@@ -4,11 +4,13 @@ A basic structure of a web application for web developers to develop upon and sh
 
 # Dependancies
 > node ^8.9.4
+
 > grunt-cli ```npm install -g grunt-cli```
 
 # Get Started
 
-- Clone this
+- Fork this repo
+- Clone your repo
 
 ## Install dependancies
 ```
