@@ -28,7 +28,11 @@ yarn install
 grunt
 ```
 
-## Start server
+## Start application and server
 ```
-http-server ./public -o
+npm start
+```
+or
+```
+yarn start
 ```

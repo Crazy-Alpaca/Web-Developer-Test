@@ -4,6 +4,7 @@
   "description": "A sample application for demonstrating web development skills",
   "main": "index.js",
   "scripts": {
+    "start": "grunt && node index.js",
     "test": "test"
   },
   "repository": "git+https://github.com/Crazy-Alpaca/Web-Developer-Test.git",

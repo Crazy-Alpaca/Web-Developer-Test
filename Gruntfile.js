@@ -17,6 +17,12 @@ module.exports = function(grunt) {
         cwd: 'src/pages',
         src: '**/*.html',
         dest: 'public/'
+      },
+      mockApi: {
+        expand: true,
+        cwd: 'src/api',
+        src: '**/*.json',
+        dest: 'public/'
       }
     },
 
