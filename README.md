@@ -28,5 +28,5 @@ grunt
 
 ## Start server
 ```
-http-server -o
+http-server ./public -o
 ```
