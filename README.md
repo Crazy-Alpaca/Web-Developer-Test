@@ -2,6 +2,10 @@
 
 A basic structure of a web application for web developers to develop upon and show off their skills.
 
+```html
+   Please DO NOT mention any Company or Individual names in code, when forking, committing, branching, developing or completing the test.  
+```
+
 # Dependancies
 > node ^8.9.4
 
