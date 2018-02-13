@@ -2,9 +2,9 @@
   "name": "my-app",
   "version": "0.0.1",
   "description": "A sample application for demonstrating web development skills",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "grunt && node index.js",
+    "start": "grunt && node server.js",
     "test": "test"
   },
   "repository": "git+https://github.com/Crazy-Alpaca/Web-Developer-Test.git",
