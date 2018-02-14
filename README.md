@@ -36,3 +36,9 @@ or
 ```
 yarn start
 ```
+
+## Creative assets  
+Look in ```./design-assets```
+
+### Fonts
+All free to download or include from [https://fonts.google.com/specimen/Libre+Franklin](https://fonts.google.com/specimen/Libre+Franklin) (Regular and ExtraLight)
