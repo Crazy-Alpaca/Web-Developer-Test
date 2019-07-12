@@ -1,10 +1,13 @@
 module.exports = function(grunt) {
 
+  const sass = require('node-sass');
+
   grunt.initConfig({
 
     jshint: {
       files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
       options: {
+        esversion: 6,
         globals: {
           jQuery: true
         }
@@ -28,12 +31,13 @@ module.exports = function(grunt) {
 
     sass: {
         options: {
-            sourceMap: true
+          implementation: sass,
+          sourceMap: true
         },
         dist: {
-            files: {
-                'public/styles/app.css': 'src/styles/app.scss'
-            }
+          files: {
+              'public/styles/app.css': 'src/styles/app.scss'
+          }
         }
     },
 
