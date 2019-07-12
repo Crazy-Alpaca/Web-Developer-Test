@@ -5,7 +5,7 @@ A basic structure of a web application for web developers to develop upon and sh
 ### Please DO NOT mention any Company or Individual names in code, when forking, committing, branching, developing or completing the test. 
 
 # Dependancies
-> node ^8.9.4
+> node ^10.15.3
 
 > grunt-cli ```npm install -g grunt-cli```
 
@@ -18,10 +18,6 @@ A basic structure of a web application for web developers to develop upon and sh
 ```
 npm i
 ``` 
-or 
-```
-yarn install
-```
 
 ## Build the app
 ```
@@ -31,10 +27,6 @@ grunt
 ## Start application and server
 ```
 npm start
-```
-or
-```
-yarn start
 ```
 
 ## Creative assets  
