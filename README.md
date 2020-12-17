@@ -1,8 +1,8 @@
 # My Application
 
-A basic structure of a web application for web developers to develop upon and show off their skills.
+A basic structure of a web application for web developers to develop upon and show their skills.
 
-### Please DO NOT mention any Company or Individual names in code, when forking, committing, branching, developing or completing the test. 
+### Please DO NOT mention any Company or Individual names in code, when forking, committing, branching, developing or completing the exercise. 
 
 # Dependancies
 > node ^10.15.3
@@ -34,3 +34,18 @@ Look in ```./design-assets```
 
 ### Fonts
 All free to download or include from [https://fonts.google.com/specimen/Libre+Franklin](https://fonts.google.com/specimen/Libre+Franklin) (Regular and ExtraLight)
+
+## Anything you want to tell us?
+- Assumptions
+- Decisions
+- What you used to develop and test
+
+## How would you improve this test?
+1.
+2.
+3.
+
+### What did you like?
+1.
+2.
+3.
