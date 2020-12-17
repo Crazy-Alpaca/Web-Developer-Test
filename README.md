@@ -19,9 +19,9 @@ A basic structure of a web application for web developers to develop upon and sh
 npm i
 ``` 
 
-## Build the app
+## Build the app & watch
 ```
-grunt
+grunt dev
 ```
 
 ## Start application and server
