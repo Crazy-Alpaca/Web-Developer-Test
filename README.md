@@ -35,10 +35,13 @@ Look in ```./design-assets```
 ### Fonts
 All free to download or include from [https://fonts.google.com/specimen/Libre+Franklin](https://fonts.google.com/specimen/Libre+Franklin) (Regular and ExtraLight)
 
+## Which Browsers/Devices or Virtualisation services did you check the application in?
+
+
 ## Anything you want to tell us?
-- Assumptions
-- Decisions
-- What you used to develop and test
+- Assumptions?
+- Decisions?
+- What you used to develop and test?
 
 ## How would you improve this test?
 1.
