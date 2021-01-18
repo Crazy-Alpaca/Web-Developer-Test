@@ -43,12 +43,19 @@ All free to download or include from [https://fonts.google.com/specimen/Libre+Fr
 - Decisions?
 - What you used to develop and test?
 
-## How would you improve this test?
+
+## What did you think of this test/exercise?
+### What did you like?
 1.
 2.
 3.
 
-### What did you like?
+### What could be improved?
+1.
+2.
+3.
+
+### What didn't you like?
 1.
 2.
 3.
