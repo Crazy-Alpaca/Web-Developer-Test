@@ -1,20 +1,22 @@
 const express = require('express');
 const cors = require('cors');
-// const path = require('path')
+const path = require('path')
 const {graphqlHTTP} = require('express-graphql');
 const {buildSchema} = require('graphql');
-import * as cart from './api/products/index.json'
+const cart = require(`${__dirname}/api/products/index.json`);
 
 const app = express();
 const port = process.env.PORT || 8080
-//const contentBasePath = path.join(__dirname, 'public');
+const contentBasePath = path.join(__dirname, "..", "build");
 
+// Middlewares
 app.use(cors());
-//app.use(express.static(contentBasePath))
+app.use(express.static(contentBasePath))
+app.use(express.static("public"));
+app.get('/', (req: any, res: any) => {
+  res.sendFile(path.join(__dirname, "..", "build", "index.html"));
+});
 
-// app.get('*', function (request: any, response: any){
-//   response.sendFile(path.resolve(contentBasePath, 'index.html'))
-// })
 interface ICart {
   name: string;
   price: number;
@@ -62,7 +64,7 @@ const resolvers = {
     };
 
     const existingProduct = cart.items.find((item: ICart) => item.sku === sku);
-    const index = cart.items.indexOf(existingProduct as any);
+    const index = cart.items.indexOf(existingProduct as ICart);
     cart.items.splice(index, 1);
 
     return cart.items;
@@ -70,7 +72,7 @@ const resolvers = {
 };
 
 // Server config
-app.use('/', graphqlHTTP({
+app.use('/api', graphqlHTTP({
   schema: schema,
   rootValue: resolvers,
   graphiql: true,

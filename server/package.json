@@ -8,8 +8,7 @@
   "main": "server.js",
   "scripts": {
     "build": "tsc",
-    "start": "npm run build && grunt && node lib/server.js",
-    "test": "test"
+    "start": "npm install && npm run build && node index.js"
   },
   "repository": "git+https://github.com/Crazy-Alpaca/Web-Developer-Test.git",
   "keywords": [
@@ -23,6 +22,7 @@
   },
   "homepage": "https://github.com/Crazy-Alpaca/Web-Developer-Test#readme",
   "devDependencies": {
+    "@types/node": "^14.14.22",
     "grunt": "^1.0.4",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-jshint": "^2.1.0",
@@ -33,7 +33,6 @@
     "node-sass": "^4.14.1"
   },
   "dependencies": {
-    "@types/node": "^14.14.22",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-graphql": "^0.12.0",
