@@ -29,6 +29,10 @@ grunt dev
 npm start
 ```
 
+## Live application
+
+[https://samplecartapp.herokuapp.com/](https://samplecartapp.herokuapp.com/)
+
 ## Creative assets  
 Look in ```./design-assets```
 

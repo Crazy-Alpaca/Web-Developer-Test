@@ -58,6 +58,4 @@ typings/
 # dotenv environment variables file
 .env
 
-# Output directory
-/public
 
