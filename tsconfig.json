@@ -6,7 +6,10 @@
     "outDir": "lib",
     "sourceMap": true,
     "strict": true,
-    "target": "esnext"
+    "target": "esnext",
+    "resolveJsonModule": true,
+    "jsx": "react"
   },
-  "compileOnSave": true
+  "compileOnSave": true,
+  "include": ["server.ts"]
 }

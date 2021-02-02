@@ -1,8 +1,9 @@
 const express = require('express');
 const cors = require('cors');
-const path = require('path')
+// const path = require('path')
 const {graphqlHTTP} = require('express-graphql');
 const {buildSchema} = require('graphql');
+import * as cart from './api/products/index.json'
 
 const app = express();
 const port = process.env.PORT || 8080
@@ -14,6 +15,13 @@ app.use(cors());
 // app.get('*', function (request: any, response: any){
 //   response.sendFile(path.resolve(contentBasePath, 'index.html'))
 // })
+interface ICart {
+  name: string;
+  price: number;
+  size?: string;
+  sku: string;
+  stockLevel: number;
+}
 
 const typeDefs = `
 type Query {
@@ -21,63 +29,43 @@ type Query {
 }
 
 type Mutation {
-  updateProduct(id: ID!, quantity: Float!): [Cart]!,
-  deleteProduct(id: ID!): [Cart]!
+  updateProduct(sku: ID!, stockLevel: Float!): [Cart]!,
+  deleteProduct(sku: ID!): [Cart]!
 }
 
 type Cart { 
-    id: ID!,
-    product: String!,
-    price: String!,
-    quantity: Float!
+    name: String!,
+    price: Float!,
+    size: String!,
+    sku: String!,
+    stockLevel: Float
 }
 `
 const schema = buildSchema(typeDefs);
 
-const cart = [
-  {
-    id: "1",
-    product:  "Cotton T-shirt, medium",
-    price: "$10.99",
-    quantity: 1
-  },
-  {
-    id: "2",
-    product:  "Baseball cap, one size",
-    price: "$5.99",
-    quantity: 0
-  },
-  {
-    id: "3",
-    product:  "Shorts, medium",
-    price: "14.99",
-    quantity: 0
-  }
-];
-
 // Query and Mutation logic
 const resolvers = {
-  getCart: () => cart,
-  updateProduct: ({id, quantity}: { id: string, quantity: number }) => {
-    if (!id || !quantity) {
+  getCart: () => cart.items,
+  updateProduct: ({sku, stockLevel}: { sku: string, stockLevel: number }) => {
+    if (!sku || !stockLevel) {
       console.log('Invalid Product');
     };
 
-    const existingProduct = cart.find(item => item.id === id);
-    (existingProduct as any).quantity = quantity;
+    const existingProduct = cart.items.find((item: ICart) => item.sku === sku);
+    (existingProduct as any).stockLevel = stockLevel;
 
-    return cart;
+    return cart.items;
   },
-  deleteProduct: ({id}: { id: string }) => {
-    if (!id) {
+  deleteProduct: ({sku}: { sku: string }) => {
+    if (!sku) {
       console.log('Product unknown');
     };
 
-    const existingProduct = cart.find(item => item.id === id);
-    const index = cart.indexOf(existingProduct as any);
-    cart.splice(index, 1);
+    const existingProduct = cart.items.find((item: ICart) => item.sku === sku);
+    const index = cart.items.indexOf(existingProduct as any);
+    cart.items.splice(index, 1);
 
-    return cart;
+    return cart.items;
   }
 };
 

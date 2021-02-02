@@ -8,7 +8,7 @@
   "main": "server.js",
   "scripts": {
     "build": "tsc",
-    "start": "npm run build && grunt && node lib/server.js --watch",
+    "start": "npm run build && grunt && node lib/server.js",
     "test": "test"
   },
   "repository": "git+https://github.com/Crazy-Alpaca/Web-Developer-Test.git",
