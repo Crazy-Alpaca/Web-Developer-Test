@@ -13,7 +13,7 @@ const contentBasePath = path.join(__dirname, "..", "build");
 app.use(cors());
 app.use(express.static(contentBasePath))
 app.use(express.static("public"));
-app.get('*', (req: any, res: any) => {
+app.get('/', (req: any, res: any) => {
   res.sendFile(path.join(__dirname, "..", "build", "index.html"));
 });
 
