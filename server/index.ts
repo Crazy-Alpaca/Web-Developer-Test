@@ -6,7 +6,7 @@ const {buildSchema} = require('graphql');
 const cart = require(`${__dirname}/api/products/index.json`);
 
 const app = express();
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 8080;
 const contentBasePath = path.join(__dirname, "..", "build");
 
 // Middlewares
