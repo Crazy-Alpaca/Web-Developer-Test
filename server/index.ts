@@ -6,7 +6,7 @@ const {buildSchema} = require('graphql');
 const cart = require(`${__dirname}/api/products/index.json`);
 
 const app = express();
-const port = process.env.PORT
+const port = process.env.PORT || 5000
 const contentBasePath = path.join(__dirname, "..", "build");
 
 // Middlewares
@@ -82,6 +82,6 @@ app.listen(port, (error: any) => {
   if (error) {
     console.error('error', error)
   } else {
-    console.info(`\n ==> 🌎  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.`)
+    console.info(`\n ==> 🌎  Listening`)
   }
 })
