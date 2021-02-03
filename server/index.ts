@@ -6,14 +6,14 @@ const {buildSchema} = require('graphql');
 const cart = require(`${__dirname}/api/products/index.json`);
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 const contentBasePath = path.join(__dirname, "..", "build");
 
 // Middlewares
 app.use(cors());
 app.use(express.static(contentBasePath))
 app.use(express.static("public"));
-app.get('/', (req: any, res: any) => {
+app.get('*', (req: any, res: any) => {
   res.sendFile(path.join(__dirname, "..", "build", "index.html"));
 });
 
