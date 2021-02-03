@@ -82,6 +82,6 @@ app.listen(port, (error: any) => {
   if (error) {
     console.error('error', error)
   } else {
-    console.info(`\n ==> 🌎  Listening`)
+    console.info(`\n ==> 🌎  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.`)
   }
 })
