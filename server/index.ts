@@ -27,15 +27,22 @@ interface ICart {
 
 const typeDefs = `
 type Query {
-  getCart: [Cart]!
+  getCart: Cart!
 }
 
 type Mutation {
-  updateProduct(sku: ID!, stockLevel: Float!): [Cart]!,
-  deleteProduct(sku: ID!): [Cart]!
+  updateProduct(sku: ID!, stockLevel: Float!): Cart,
+  deleteProduct(sku: ID!): Cart
 }
 
-type Cart { 
+type Cart {
+    items: [Product]!
+    subTotal: Float,
+    VAT: Float,
+    total: Float
+}
+
+type Product { 
     name: String!,
     price: Float!,
     size: String!,
@@ -45,32 +52,64 @@ type Cart {
 `
 const schema = buildSchema(typeDefs);
 
+const getSubtotalCost = async (item: Array<ICart>) => await item.reduce((total: number, current:  any) => total + (current.stockLevel *  current.price),0);
+
 // Query and Mutation logic
 const resolvers = {
-  getCart: () => cart.items,
-  updateProduct: ({sku, stockLevel}: { sku: string, stockLevel: number }) => {
+  getCart: async () => {
+    // Update subtotal cost
+    cart.subTotal = await getSubtotalCost(cart.items);
+
+    // Update VAT
+    cart.VAT = cart.subTotal * 20/100
+
+    // Update Total cost
+    cart.total = cart.VAT + cart.subTotal
+
+    return Promise.resolve(cart);
+  },
+  updateProduct: async ({sku, stockLevel}: { sku: string, stockLevel: number }) => {
     if (!sku || !stockLevel) {
       console.log('Invalid Product');
     };
 
+    // Update quantity
     const existingProduct = cart.items.find((item: ICart) => item.sku === sku);
     (existingProduct as any).stockLevel = stockLevel;
 
-    return cart.items;
+    // Update subtotal cost
+    cart.subTotal = await getSubtotalCost(cart.items);
+
+    // Update VAT
+    cart.VAT = cart.subTotal * 20/100
+
+    // Update Total cost
+    cart.total = cart.VAT + cart.subTotal
+
+    return Promise.resolve(cart);
   },
-  deleteProduct: ({sku}: { sku: string }) => {
+  deleteProduct: async ({sku}: { sku: string }) => {
     if (!sku) {
       console.log('Product unknown');
     };
 
+    // Delete item from cart
     const existingProduct = cart.items.find((item: ICart) => item.sku === sku);
     const index = cart.items.indexOf(existingProduct as ICart);
     cart.items.splice(index, 1);
 
-    return cart.items;
+    // Update subtotal cost
+    cart.subTotal = await getSubtotalCost(cart.items);
+
+    // Update VAT
+    cart.VAT = cart.subTotal * 20/100
+
+    // Update Total cost
+    cart.total = cart.VAT + cart.subTotal
+
+    return Promise.resolve(cart);
   }
 };
-
 // Server config
 app.use('/api', graphqlHTTP({
   schema: schema,

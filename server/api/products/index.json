@@ -34,5 +34,8 @@
             "stockLevel": 100,
             "size": "medium"
         }
-    ]
+    ],
+    "subtotal": null,
+    "VAT": null,
+    "total": null
 }

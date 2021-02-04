@@ -1,38 +1,87 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.container {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.cart-wrapper {}
+
+.cart-wrapper__title {
+  color: rgba(0,0,0,0.6);
+  font-weight: 300;
+  padding: 10px 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.cart-wrapper__text {
+  color: rgba(0,0,0,0.6);
+  font-weight: 300;
+  padding: 10px 0;
+}
+
+table {
+  width: 100%;
+}
+
+thead {}
+
+th {
+  text-align: left;
+  font-weight: 400;
+  padding: 10px 0;
+}
+
+td {
+  text-align: left;
+  font-weight: 200;
+  padding: 10px 0;
+}
+
+@media
+only screen
+and (max-width: 760px), (min-device-width: 768px)
+and (max-device-width: 1024px)  {
+
+  /* Force table to not be like tables anymore */
+  table, thead, tbody, th, td, tr {
+    display: block;
   }
-  to {
-    transform: rotate(360deg);
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
   }
+
+  tr {
+    margin: 0 0 1rem 0;
+  }
+
+  td {
+    /* Behave  like a "row" */
+    border: none;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 0;
+    left: 6px;
+    width: 45%;
+    padding: 10px 10px 10px 0;
+    white-space: nowrap;
+  }
+
+  /*
+  Label the data
+You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
+  */
+  td:nth-of-type(1):before { content: "Product"; }
+  td:nth-of-type(2):before { content: "Price"; }
+  td:nth-of-type(3):before { content: "Quanity"; }
+  td:nth-of-type(4):before { content: "Cost"; }
 }
