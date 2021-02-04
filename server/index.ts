@@ -45,7 +45,7 @@ type Cart {
 type Product { 
     name: String!,
     price: Float!,
-    size: String!,
+    size: String,
     sku: String!,
     stockLevel: Float
 }
