@@ -24,6 +24,7 @@
         {
             "sku": "AWDT0002",
             "name": "Baseball cap",
+            "size": "large",
             "price": 5.99,
             "stockLevel": 7
         },
