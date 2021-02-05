@@ -16,3 +16,37 @@ query {
   }
 }
 `;
+
+export const UPDATE_PRODUCT = gql`
+mutation {
+  updateProduct(sku: $sku, stockLevel: $stockLevel) {
+    items{
+      price
+      size
+      sku
+      name
+      stockLevel
+    }
+    subTotal
+    VAT
+    total
+  }
+}
+`;
+
+export const REMOVE_PRODUCT = gql`
+mutation {
+  deleteProduct(sku: $sku) {
+    items{
+      price
+      size
+      sku
+      name
+      stockLevel
+    }
+    subTotal
+    VAT
+    total
+  }
+}
+`;
