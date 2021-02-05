@@ -17,19 +17,23 @@ export interface ICartList {
 
 interface ICartTable {
   cart: Array<ICartList>;
+  deleteProduct: any;
+  updateProduct: any;
 }
 
 const CartTable: React.FC<ICartTable> = (props) => {
-  const {cart} = props;
+  const {cart, deleteProduct, updateProduct } = props;
+
   const Items: React.FC = () => (
     <tbody role="rowgroup">
     {
       cart?.map((item: ICartList) => (
-        <tr role="row">
-          <td role="cell">{`${item?.name} ${item?.size}`}</td>
+        <tr role="row" key={item.sku}>
+          <td role="cell">{item?.name} {item?.size}</td>
           <td role="cell">{item?.price}</td>
-          <td role="cell">{item?.stockLevel}</td>
+          <td role="cell" onClick={() => updateProduct(item.sku, item?.stockLevel)}>{item?.stockLevel}</td>
           <td role="cell">{item?.price * item?.stockLevel}</td>
+          <td onClick={() => deleteProduct(item.sku)}>DELETE</td>
         </tr>
       ))
     }
@@ -46,7 +50,7 @@ const CartTable: React.FC<ICartTable> = (props) => {
         <th role="columnheader">{cartItems.cost}</th>
       </tr>
       </thead>
-      <Items/>
+      <Items />
     </table>
   )
 }

@@ -7,13 +7,13 @@
 
 .cart-wrapper {}
 
-.cart-wrapper__title {
+.cart__title {
   color: rgba(0,0,0,0.6);
   font-weight: 300;
   padding: 10px 0;
 }
 
-.cart-wrapper__text {
+.cart__caption {
   color: rgba(0,0,0,0.6);
   font-weight: 300;
   padding: 10px 0;

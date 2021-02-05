@@ -18,7 +18,7 @@ query {
 `;
 
 export const UPDATE_PRODUCT = gql`
-mutation {
+mutation ($sku: ID!, $stockLevel: Float! ){
   updateProduct(sku: $sku, stockLevel: $stockLevel) {
     items{
       price
@@ -35,7 +35,7 @@ mutation {
 `;
 
 export const REMOVE_PRODUCT = gql`
-mutation {
+mutation ($sku: ID!){
   deleteProduct(sku: $sku) {
     items{
       price
