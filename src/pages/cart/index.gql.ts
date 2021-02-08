@@ -53,17 +53,6 @@ mutation ($sku: ID!){
 
 export const SAVE_CART = gql`
 mutation ($skus: [ID]){
-  saveCart(skus: $skus) {
-    items{
-      price
-      size
-      sku
-      name
-      stockLevel
-    }
-    subTotal
-    VAT
-    total
-  }
+  saveCart(skus: $skus)
 }
 `;

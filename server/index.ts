@@ -57,9 +57,9 @@ const getSubtotalCost = async (item: Array<ICart>) => await item.reduce((total: 
 
 // Query and Mutation logic
 const resolvers = {
-  saveCart: (skus: any) => {
+  saveCart: (skus: Array<any>) => {
     const savedCart = [];
-    for(const item of skus.skus) {
+    for(const item of skus["skus" as any]) {
       const products = cart.items && cart.items.find((product: ICart) => product.sku === item);
       savedCart.push(products);
     }

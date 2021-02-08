@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import Button from '@material-ui/core/Button';
 import TotalCostTable, {ITotalCostTable} from '../../components/totalcost-table';
 import CartTable, {ICartList} from "../../components/cart-table";
@@ -18,7 +18,6 @@ interface ICart extends ITotalCostTable {
 
 const Cart: React.FC = () => {
   const {loading, error, data} = useQuery(GET_CART);
-  //const [ state, setState ] = useState<ICart>(data?.getCart);
   const [saveCart] = useMutation(SAVE_CART);
   const [deleteProduct] = useMutation(REMOVE_PRODUCT);
   const [updateProduct] = useMutation(UPDATE_PRODUCT);
@@ -32,8 +31,14 @@ const Cart: React.FC = () => {
 
   const handleSaveCart = () => {
     const productSkus = reduce(cart);
-    console.log(typeof productSkus, productSkus);
-    saveCart(productSkus);
+    saveCart(
+      {
+        refetchQueries: [{
+          query: SAVE_CART
+        }],
+        variables: {productSkus}
+      }
+    );
   }
 
   // const handleClick = (event: any) => {
@@ -60,6 +65,7 @@ const Cart: React.FC = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
+  if (!cart) return <p>"data?.saveCart"</p>;
 
   return (
     <div className="container">
