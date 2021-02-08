@@ -1,6 +1,6 @@
 import React from "react";
 
-interface ITotalCostTable {
+export interface ITotalCostTable {
   subTotal?: number;
   totalCost?: number;
   VAT?: string;

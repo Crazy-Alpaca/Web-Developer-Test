@@ -32,7 +32,8 @@ type Query {
 
 type Mutation {
   updateProduct(sku: ID!, stockLevel: Float!): Cart,
-  deleteProduct(sku: ID!): Cart
+  deleteProduct(sku: ID!): Cart,
+  saveCart(skus: [ID]): String
 }
 
 type Cart {
@@ -56,6 +57,15 @@ const getSubtotalCost = async (item: Array<ICart>) => await item.reduce((total: 
 
 // Query and Mutation logic
 const resolvers = {
+  saveCart: (skus: any) => {
+    const savedCart = [];
+    for(const item of skus.skus) {
+      const products = cart.items && cart.items.find((product: ICart) => product.sku === item);
+      savedCart.push(products);
+    }
+    console.log(savedCart);
+    return ("Cart Saved");
+  },
   getCart: async () => {
     // Update subtotal cost
     cart.subTotal = await getSubtotalCost(cart.items);
