@@ -23,15 +23,15 @@ const TotalCostTable: React.FC<ITotalCostTable> = (props) => {
     <table role="table">
       <tbody role="rowgroup">
       <tr role="row">
-        <td role="cell">{text.subTotal}</td>
+        <td role="cell" >{text.subTotal}</td>
         <td role="cell">{subTotal}</td>
       </tr>
       <tr role="row">
-        <td role="cell">{text.VAT}</td>
+        <td role="cell" >{text.VAT}</td>
         <td role="cell">{VAT}</td>
       </tr>
       <tr role="row">
-        <td role="cell">{text.totalCost}</td>
+        <td role="cell" >{text.totalCost}</td>
         <td role="cell">{totalCost}</td>
       </tr>
       </tbody>

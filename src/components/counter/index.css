@@ -1,0 +1,21 @@
+.counter__container {
+  border: 1px solid #3f51b5;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 8px;
+  width: 105px;
+  display: flex;
+}
+
+.counter__remove, .counter__add {
+  font-size: 1rem;
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+.counter__input {
+  border: none;
+  width: 40px;
+  box-sizing: border-box;
+  padding: 5px;
+}

@@ -1,4 +1,7 @@
 import React from "react";
+import DeleteIcon from '@material-ui/icons/Delete';
+import {Counter} from "../counter";
+import './index.css';
 
 const cartItems = {
   cost: 'Cost',
@@ -22,18 +25,27 @@ interface ICartTable {
 }
 
 const CartTable: React.FC<ICartTable> = (props) => {
-  const {cart, deleteProduct, updateProduct } = props;
+  const {cart = [], deleteProduct, updateProduct} = props;
 
   const Items: React.FC = () => (
     <tbody role="rowgroup">
     {
-      cart?.map((item: ICartList) => (
+      cart?.map((item: ICartList, index) => (
         <tr role="row" key={item.sku}>
           <td role="cell">{item?.name} {item?.size}</td>
           <td role="cell">{item?.price}</td>
-          <td role="cell" onClick={() => updateProduct(item.sku, item?.stockLevel)}>{item?.stockLevel}</td>
+          <td role="cell">
+            <Counter
+              index={index}
+              sku={item.sku}
+              updateProduct={updateProduct}
+              value={item?.stockLevel}
+            />
+          </td>
           <td role="cell">{item?.price * item?.stockLevel}</td>
-          <td onClick={() => deleteProduct(item.sku)}>DELETE</td>
+          <td onClick={() => deleteProduct(item.sku)}>
+            <DeleteIcon className=""/>
+          </td>
         </tr>
       ))
     }
@@ -50,7 +62,7 @@ const CartTable: React.FC<ICartTable> = (props) => {
         <th role="columnheader">{cartItems.cost}</th>
       </tr>
       </thead>
-      <Items />
+      <Items/>
     </table>
   )
 }

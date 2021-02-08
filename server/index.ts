@@ -59,12 +59,14 @@ const getSubtotalCost = async (item: Array<ICart>) => await item.reduce((total: 
 const resolvers = {
   saveCart: (skus: Array<any>) => {
     const savedCart = [];
-    for(const item of skus["skus" as any]) {
-      const products = cart.items && cart.items.find((product: ICart) => product.sku === item);
-      savedCart.push(products);
+    if (skus["skus" as any]) {
+      for (const item of skus["skus" as any]) {
+        const products = cart.items.find((product: ICart) => product.sku === item);
+        savedCart.push(products);
+        console.log(products);
+      }
     }
-    console.log(savedCart);
-    return ("Cart Saved");
+    return"Cart saved";
   },
   getCart: async () => {
     // Update subtotal cost

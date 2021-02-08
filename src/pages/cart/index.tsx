@@ -21,7 +21,7 @@ const Cart: React.FC = () => {
   const [saveCart] = useMutation(SAVE_CART);
   const [deleteProduct] = useMutation(REMOVE_PRODUCT);
   const [updateProduct] = useMutation(UPDATE_PRODUCT);
-  const cart: Array<ICartList> = data?.getCart?.items || [];
+  const cart: Array<ICartList> = data?.getCart?.items;
 
   function reduce (param: Array<ICartList>) {
     return param.reduce((total: any, current) => {
@@ -30,15 +30,10 @@ const Cart: React.FC = () => {
   }
 
   const handleSaveCart = () => {
-    const productSkus = reduce(cart);
-    saveCart(
-      {
-        refetchQueries: [{
-          query: SAVE_CART
-        }],
-        variables: {skus: productSkus}
-      }
-    );
+    const skus = reduce(cart);
+    saveCart({variables: {skus}});
+
+    alert("Cart Saved");
   }
 
   // const handleClick = (event: any) => {
@@ -65,7 +60,7 @@ const Cart: React.FC = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
-  if (!cart) return <p>{data?.saveCart}</p>;
+  if (!cart && data?.saveCart) return <p>{data?.saveCart}</p>;
 
   return (
     <div className="container">
