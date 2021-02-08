@@ -36,7 +36,7 @@ const Cart: React.FC = () => {
         refetchQueries: [{
           query: SAVE_CART
         }],
-        variables: {productSkus}
+        variables: {skus: productSkus}
       }
     );
   }
@@ -65,7 +65,7 @@ const Cart: React.FC = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
-  if (!cart) return <p>"data?.saveCart"</p>;
+  if (!cart) return <p>{data?.saveCart}</p>;
 
   return (
     <div className="container">
