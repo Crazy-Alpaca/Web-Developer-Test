@@ -53,7 +53,7 @@ type Product {
 `
 const schema = buildSchema(typeDefs);
 
-const getSubtotalCost = async (item: Array<ICart>) => await item.reduce((total: number, current:  any) => total + (current.stockLevel *  current.price),0);
+const getSubtotalCost = async (item: Array<ICart>) => await item.reduce((total: number, current:  any) => Math.floor(total + (current.stockLevel *  current.price)),0);
 
 // Query and Mutation logic
 const resolvers = {
@@ -73,10 +73,10 @@ const resolvers = {
     cart.subTotal = await getSubtotalCost(cart.items);
 
     // Update VAT
-    cart.VAT = cart.subTotal * 20/100
+    cart.VAT = Math.floor(cart.subTotal * 20/100);
 
     // Update Total cost
-    cart.total = cart.VAT + cart.subTotal
+    cart.total = Math.floor(cart.VAT + cart.subTotal);
 
     return Promise.resolve(cart);
   },
@@ -93,10 +93,10 @@ const resolvers = {
     cart.subTotal = await getSubtotalCost(cart.items);
 
     // Update VAT
-    cart.VAT = cart.subTotal * 20/100
+    cart.VAT = Math.floor(cart.subTotal * 20/100);
 
     // Update Total cost
-    cart.total = cart.VAT + cart.subTotal
+    cart.total = Math.floor(cart.VAT + cart.subTotal);
 
     return Promise.resolve(cart);
   },

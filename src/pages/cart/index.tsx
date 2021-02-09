@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import TotalCostTable, {ITotalCostTable} from '../../components/totalcost-table';
+import TotalCostTable from '../../components/totalcost-table';
 import CartTable, {ICartList} from "../../components/cart-table";
 import {useQuery} from '@apollo/client';
 import {useMutation} from '@apollo/client';
@@ -11,10 +11,6 @@ import {
   SAVE_CART
 } from './index.gql';
 import './index.css';
-
-interface ICart extends ITotalCostTable {
-  items: Array<ICartList>;
-}
 
 const Cart: React.FC = () => {
   const {loading, error, data} = useQuery(GET_CART);
@@ -36,10 +32,6 @@ const Cart: React.FC = () => {
     alert("Cart Saved");
   }
 
-  // const handleClick = (event: any) => {
-  //   event.target.value;
-  // }
-
   const handleDelete = (sku: string) => {
     deleteProduct({
       refetchQueries: [{
@@ -49,7 +41,7 @@ const Cart: React.FC = () => {
     });
   }
 
-  const handleUpdate = (sku: string, stockLevel: string) => {
+  const handleUpdate = (sku: string, stockLevel: number) => {
     updateProduct({
       refetchQueries: [{
         query: GET_CART
@@ -60,7 +52,6 @@ const Cart: React.FC = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
-  if (!cart && data?.saveCart) return <p>{data?.saveCart}</p>;
 
   return (
     <div className="container">
@@ -72,14 +63,14 @@ const Cart: React.FC = () => {
           Items you have added to your basket shown below. Adjust the quantities or remove items before continuing
           purchase
         </p>
-        <CartTable cart={cart} deleteProduct={handleDelete} updateProduct={handleUpdate}/>
+        <CartTable cart={cart} handleDelete={handleDelete} handleUpdate={handleUpdate}/>
         <TotalCostTable
           subTotal={data?.getCart?.subTotal}
           totalCost={data?.getCart?.total}
           VAT={data?.getCart?.VAT}
         />
         <div className="cart__button--buy-now">
-          <Button variant="contained" color="primary" onClick={handleSaveCart}>
+          <Button variant="contained" className="buy-now" onClick={handleSaveCart}>
             BUY NOW
           </Button>
         </div>

@@ -20,37 +20,63 @@ export interface ICartList {
 
 interface ICartTable {
   cart: Array<ICartList>;
-  deleteProduct: any;
-  updateProduct: any;
+  handleDelete(sku: string): void;
+  handleUpdate(sku: string, stockLevel: number): void;
+}
+
+const Items: React.FC<any> = (props: any) => {
+  const { item, handleDelete, handleUpdate } = props;
+  const sku = item.sku;
+  const value = item.stockLevel;
+
+  const [state, setState] = React.useState<any>({[sku]: value});
+
+  const handleChange = (event: any) => {
+    setState({[event.target.name]: Number(event.target.value)});
+    handleUpdate(sku, state[sku]);
+  };
+
+  const handleReduce = (sku: string) => {
+    if (state[sku] <= 0) {
+      return
+    }
+    else {
+      setState({[sku]: state[sku] - 1});
+      handleUpdate(sku, state[sku]);
+    }
+  }
+
+  const handleIncrease = (sku: string) => {
+    setState({[sku]: state[sku] + 1});
+    handleUpdate(sku, state[sku]);
+  }
+
+  return (
+    <>
+      <tr role="row" key={item?.sku}>
+        <td role="cell">{item?.name} {item?.size}</td>
+        <td role="cell">{item?.price}</td>
+        <td role="cell">
+          { console.log(state)}
+          <Counter
+            sku={item?.sku}
+            value={state[sku]}
+            handleChange={handleChange}
+            handleIncrease={handleIncrease}
+            handleReduce={handleReduce}
+          />
+        </td>
+        <td role="cell">{Math.floor(item?.price * state[sku])}</td>
+        <td>
+          <DeleteIcon className="icon__delete" onClick={() => handleDelete(item?.sku)}/>
+        </td>
+      </tr>
+    </>
+  )
 }
 
 const CartTable: React.FC<ICartTable> = (props) => {
-  const {cart = [], deleteProduct, updateProduct} = props;
-
-  const Items: React.FC = () => (
-    <tbody role="rowgroup">
-    {
-      cart?.map((item: ICartList, index) => (
-        <tr role="row" key={item.sku}>
-          <td role="cell">{item?.name} {item?.size}</td>
-          <td role="cell">{item?.price}</td>
-          <td role="cell">
-            <Counter
-              index={index}
-              sku={item.sku}
-              updateProduct={updateProduct}
-              value={item?.stockLevel}
-            />
-          </td>
-          <td role="cell">{item?.price * item?.stockLevel}</td>
-          <td onClick={() => deleteProduct(item.sku)}>
-            <DeleteIcon className=""/>
-          </td>
-        </tr>
-      ))
-    }
-    </tbody>
-  )
+  const {cart = [], handleDelete, handleUpdate } = props;
 
   return (
     <table role="table" className="cart__item">
@@ -62,7 +88,9 @@ const CartTable: React.FC<ICartTable> = (props) => {
         <th role="columnheader">{cartItems.cost}</th>
       </tr>
       </thead>
-      <Items/>
+      <tbody role="rowgroup">
+      {cart?.map((item: ICartList) => <Items item={item} deleteProduct={handleDelete} handleUpdate={handleUpdate} key={item?.sku}/>)}
+      </tbody>
     </table>
   )
 }

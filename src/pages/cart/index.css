@@ -18,3 +18,16 @@
   font-weight: 300;
   padding: 10px 0;
 }
+
+.cart__button--buy-now {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+  padding: 15px 0;
+}
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.buy-now {
+  background: #2b81ec;
+  color: white;
+  cursor: pointer;
+}
