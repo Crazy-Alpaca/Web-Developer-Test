@@ -30,7 +30,7 @@ npm start
 ```
 
 ## Test local
-Change the uri to http://localhost:8080/api in the src -> index.ts folder
+Change the uri to http://localhost:8080/api in /src -> index.tsx file
 
 ## Live application
 
