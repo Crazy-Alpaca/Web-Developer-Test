@@ -29,6 +29,9 @@ grunt dev
 npm start
 ```
 
+## Test local
+Change the uri to http://localhost:8080/ in the src -> index.ts folder
+
 ## Live application
 
 [https://samplecartapp.herokuapp.com/](https://samplecartapp.herokuapp.com/)
