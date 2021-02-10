@@ -34,7 +34,7 @@ Change the uri to http://localhost:8080/api in /src -> index.tsx file
 
 ## Live application
 
-[https://sapmle-shopping-cart.herokuapp.com/](https://sapmle-shopping-cart.herokuapp.com/)
+[https://sample-shoppingcart-app.herokuapp.com/](https://sample-shoppingcart-app.herokuapp.com/)
 
 ## Creative assets  
 Look in ```./design-assets```
