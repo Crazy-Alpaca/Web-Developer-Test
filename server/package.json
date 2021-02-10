@@ -8,7 +8,7 @@
   "main": "server.js",
   "scripts": {
     "build": "tsc",
-    "start": "npm install && nodemon index.ts --watch"
+    "start": "npm install && nodemon index.ts"
   },
   "repository": "git+https://github.com/Crazy-Alpaca/Web-Developer-Test.git",
   "keywords": [
