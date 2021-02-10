@@ -3,7 +3,7 @@ import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import './index.css';
 
-interface IncrementCounter {
+interface InputWithCounter {
   sku: string;
   handleChange(event: any): void;
   handleIncrease(sku: string): void;
@@ -11,7 +11,7 @@ interface IncrementCounter {
   value: number;
 }
 
-export const Counter = (props: IncrementCounter) => {
+export const InputWithCounter = (props: InputWithCounter) => {
   const {
     sku,
     value,
