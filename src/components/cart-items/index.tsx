@@ -33,7 +33,7 @@ export const Items: React.FC<any> = (props: any) => {
     <>
       <tr role="row" key={item?.sku}>
         <td role="cell">{item?.name} {item?.size}</td>
-        <td role="cell">$ {item?.price}</td>
+        <td role="cell">$ {item?.price.toFixed(2)}</td>
         <td role="cell">
           <InputWithCounter
             sku={item?.sku}
@@ -43,7 +43,7 @@ export const Items: React.FC<any> = (props: any) => {
             handleReduce={handleReduce}
           />
         </td>
-        <td role="cell">$ {Number(item?.price * state[sku]).toFixed(2)}</td>
+        <td role="cell">$ {Number((item?.price * state[sku]).toFixed(2))}</td>
         <td>
           <DeleteIcon className="icon__delete" onClick={() => handleDelete(item?.sku)}/>
         </td>

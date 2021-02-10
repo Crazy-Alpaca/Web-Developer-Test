@@ -20,7 +20,7 @@ app.get('/', (req: any, res: any) => {
 interface ICart {
   name: string;
   price: number;
-  size?: string;
+  size: string;
   sku: string;
   stockLevel: number;
 }
@@ -53,7 +53,10 @@ type Product {
 `
 const schema = buildSchema(typeDefs);
 
-const getSubtotalCost = async (item: Array<ICart>) => await item.reduce((total: number, current:  any) => Number(total + (current.stockLevel *  current.price).toFixed(2)),0);
+const getSubtotalCost = async (item: Array<ICart>) => await item.reduce((total: number, current: ICart) => {
+  const totalCost = total + (current.stockLevel * current.price);
+  return Number(totalCost.toFixed(2));
+  },0);
 
 // Query and Mutation logic
 const resolvers = {
@@ -73,10 +76,10 @@ const resolvers = {
     cart.subTotal = await getSubtotalCost(cart.items);
 
     // Update VAT
-    cart.VAT = Number((cart.subTotal * 20/100).toFixed(2)).toFixed(2);
+    cart.VAT = Number((cart.subTotal * 20/100).toFixed(2));
 
     // Update Total cost
-    cart.total = Number((cart.VAT + cart.subTotal).toFixed(2)).toFixed(2);
+    cart.total = Number((cart.VAT + cart.subTotal).toFixed(2));
 
     return Promise.resolve(cart);
   },
@@ -93,10 +96,10 @@ const resolvers = {
     cart.subTotal = await getSubtotalCost(cart.items);
 
     // Update VAT
-    cart.VAT = Math.floor(cart.subTotal * 20/100);
+    cart.VAT = Number((cart.subTotal * 20/100).toFixed(2));
 
     // Update Total cost
-    cart.total = Math.floor(cart.VAT + cart.subTotal);
+    cart.total = Number((cart.VAT + cart.subTotal).toFixed(2));
 
     return Promise.resolve(cart);
   },
@@ -114,10 +117,10 @@ const resolvers = {
     cart.subTotal = await getSubtotalCost(cart.items);
 
     // Update VAT
-    cart.VAT = cart.subTotal * 20/100
+    cart.VAT = Number((cart.subTotal * 20/100).toFixed(2));
 
     // Update Total cost
-    cart.total = cart.VAT + cart.subTotal
+    cart.total = Number((cart.VAT + cart.subTotal).toFixed(2));
 
     return Promise.resolve(cart);
   }
