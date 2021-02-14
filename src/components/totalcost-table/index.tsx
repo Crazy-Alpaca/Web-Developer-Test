@@ -3,7 +3,7 @@ import React from "react";
 export interface ITotalCostTable {
   subTotal?: number;
   totalCost?: number;
-  VAT?: string;
+  VAT?: number;
 }
 
 const text = {

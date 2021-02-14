@@ -27,6 +27,7 @@ export const InputWithCounter = (props: InputWithCounter) => {
         className="counter__input"
         name={sku}
         onChange={handleChange}
+        role='input'
         type="number"
         value={value}
       />

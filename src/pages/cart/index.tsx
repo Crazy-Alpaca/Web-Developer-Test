@@ -69,8 +69,13 @@ const Cart: React.FC = () => {
           totalCost={data?.getCart?.total}
           VAT={data?.getCart?.VAT}
         />
-        <div className="cart__button--buy-now">
-          <Button variant="contained" className="buy-now" onClick={handleSaveCart}>
+        <div className="cart__button--buy-now"  data-testid="cart__button--buy-now">
+          <Button
+            className="buy-now"
+            onClick={handleSaveCart}
+            data-testid="button--buy-now"
+            variant="contained"
+          >
             BUY NOW
           </Button>
         </div>
