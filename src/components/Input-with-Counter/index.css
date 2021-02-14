@@ -7,6 +7,13 @@
   display: flex;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input.counter__container::-webkit-outer-spin-button,
+input.counter__container::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .counter__remove, .counter__add {
   font-size: 1rem;
   box-sizing: border-box;
