@@ -7,8 +7,8 @@ import { ApolloProvider } from '@apollo/client';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 
 const client = new ApolloClient({
-  //uri: 'http://localhost:8080/api',
-  uri: 'https://radiant-cove-39202.herokuapp.com/api',
+  uri: 'http://localhost:8080/api',
+  //uri: 'https://radiant-cove-39202.herokuapp.com/api',
   cache: new InMemoryCache()
 });
 

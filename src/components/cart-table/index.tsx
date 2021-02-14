@@ -1,5 +1,5 @@
 import React from "react";
-import { Items } from "../cart-items";
+import {Items} from "../cart-items";
 import './index.css';
 
 const cartItems = {
@@ -19,12 +19,14 @@ export interface ICartList {
 
 interface ICartTable {
   cart: Array<ICartList>;
+
   handleDelete(sku: string): void;
+
   handleUpdate(sku: string, stockLevel: number): void;
 }
 
 const CartTable: React.FC<ICartTable> = (props) => {
-  const {cart = [], handleDelete, handleUpdate } = props;
+  const {cart = [], handleDelete, handleUpdate} = props;
 
   return (
     <table role="table" className="cart__item">
@@ -37,7 +39,14 @@ const CartTable: React.FC<ICartTable> = (props) => {
       </tr>
       </thead>
       <tbody role="rowgroup">
-      {cart?.map((item: ICartList) => <Items item={item} deleteProduct={handleDelete} handleUpdate={handleUpdate} key={item?.sku}/>)}
+      {cart?.map((item: ICartList) => (
+          <Items
+            item={item}
+            handleDelete={handleDelete}
+            handleUpdate={handleUpdate}
+            key={item?.sku}/>
+        )
+      )}
       </tbody>
     </table>
   )
