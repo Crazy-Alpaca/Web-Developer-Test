@@ -6,7 +6,7 @@ const {buildSchema} = require('graphql');
 const cart = require(`${__dirname}/api/products/index.json`);
 
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT;
 const contentBasePath = path.join(__dirname, "..", "build");
 
 // Middlewares
@@ -132,4 +132,4 @@ app.use('/api', graphqlHTTP({
   graphiql: true,
 }));
 
-app.listen(port, '0.0.0.0')
+app.listen(port)
