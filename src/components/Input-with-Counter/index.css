@@ -1,0 +1,28 @@
+.counter__container {
+  border: 1px solid #2b81ec;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 8px;
+  width: 105px;
+  display: flex;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.counter__remove, .counter__add {
+  font-size: 1rem;
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+.counter__input {
+  border: none;
+  width: 40px;
+  box-sizing: border-box;
+  padding: 5px;
+}
