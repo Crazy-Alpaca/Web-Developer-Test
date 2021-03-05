@@ -2,9 +2,6 @@
 
 # Get Started
 
-- Fork this repo
-- Clone your repo
-
 ## Install dependancies
 ```
 npm i
